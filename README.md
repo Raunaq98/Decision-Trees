@@ -23,8 +23,32 @@ Gini index or Gini impurity measures the degree or probability of a particular v
 |negative|high|high|down| 
 |negative|low|high|down| 
 |positive|low|low|down| 
-|positive|high|high|up| 
- 
+|positive|high|high|up|
+
+      P( past trend = positive ) = 6/10
+      P( past trend = negative ) = 4/10
+      
+      For past trend = positive, P(return = up ) = 4/6
+                                 P( return = down) = 2/6
+                                 GINI index = 1 -  (4/6)² - (2/6)²
+                                            = 0.45
+                                            
+      For past trend = negative, GINI index = 1 - (0)² - (4/4)²
+                                            = 0
+                                            
+      GINI index for past trend = (6/10)(0.45)  +  (4/10)(0)
+                                = 0.27
+            
+| Attribute | GINI Index |
+|------| -------------|
+|past trend|0.27|
+|open interest|0.47|
+|trading volume|0.34|
+
+From the above table, we observe that ‘Past Trend’ has the lowest Gini Index and hence it will be chosen as the root node for how decision tree works.
+We will repeat the same procedure to determine the sub-nodes or branches of the decision tree.
+
+
 The drawback of decision trees is that they dont tend to have the best prediction accuracy due to **high variance**.
 **Bagging** is a general-purpose procedure for reducing the variance of a statistical learning method.
 
