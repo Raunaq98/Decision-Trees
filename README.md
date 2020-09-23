@@ -8,6 +8,14 @@ With more than one attribute taking part in the decision-making process, it is n
       
 The decision tree can be a **regression tree** or a **classification tree**.
 
+# Stopping Criteria
+
+One of the most common problems of a decision tree is **over-fitting**. This can be avoided if we do not let the tree grow over a certain point. Three methods of stopping tree growth are:
+
+      1. Minimum number of oberservations at an internal node.
+      2. Maximum number of observations at an internal node.
+      3. maximum depth of the tree.
+
 # Regression Trees
 
 All regression techniques contain a single output (response) variable and one or more input (predictor) variables. The output variable is numerical. The general regression tree building methodology allows input variables to be a mixture of continuous and categorical variables. A decision tree is generated when each decision node in the tree contains a test on some input variable's value. The terminal nodes of the tree contain the predicted output variable values.
@@ -21,7 +29,11 @@ A Regression tree may be considered as a variant of decision trees, designed to 
                   
                   The goal is to find regions such that RSS = sum(actual - predicted)² is minimum.
 
-Suppose that in Step 1, we obtain two regions and that the response mean of the training observations in the first region is 10, while the response mean in the second region is 20. Then for a **given observation X = x**, we will predict a value of 10, and if x ∈ R2, we will predict a value of 20.
+Suppose that in Step 1, we obtain two regions and that the response mean of the training observations in the first region is 10, while the response mean in the second region is 20. Then for a **given observation X = x**, we will predict a value of 10, and if x ∈ R2, we will predict a value of 20. The split of an attribute depends on the RSS value of all the combinations possible and choosing the minimum one. This is a **top-down greedy approach** as the best split at the current step is considered without taking into account the splits that lie ahead.
+
+# Classification Trees
+
+
 
 # GINI Impurity
 
