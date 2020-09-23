@@ -42,11 +42,12 @@ One way to prevent over-fitting a regression tree to the training data is to rem
 The first step in cost complexity pruning is to calculate the sum of **squared residual (SSR)** for each tree. We will start with the original full size tree.
 The value of SSR wwill always decrease as we keep reducing it's size. 
 
-In order to properly evaluate different trees, we use a **complexity penalty αT**
+In order to properly evaluate different trees, we use a **complexity penalty Cp.T**
             
-            where, α is the tuning parameter
+            where, Cp is the tuning parameter
                    T is the number of leaf nodes.
-
+                                    
+The **complexity parameter (cp)** is used to control the size of the decision tree and to select the optimal tree size. If the cost of adding another variable to the decision tree from the current node is above the value of cp, then tree building does not continue. We could also say that tree construction does not continue unless it would decrease the overall lack of fit by a factor of cp.
 
 # Classification Trees
 
@@ -96,11 +97,12 @@ We will repeat the same procedure to determine the sub-nodes or branches of the 
 
 # Bagging
 
-
-
 The drawback of decision trees is that they dont tend to have the best prediction accuracy due to **high variance**.
 **Bagging** is a general-purpose procedure for reducing the variance of a statistical learning method.
 
+Here idea is to create several subsets of data from training sample chosen randomly with replacement. Now, each collection of subset data is used to train their decision trees. As a result, we end up with an ensemble of different models. Average of all the predictions from different trees are used which is more robust than a single decision tree.
+
+# Random Forests
 
 Building upon bagging , we use **random forests**. These are an ensemble of decision trees sampled from the training set with replacement.
 Each time a tree is being sampled, a **random "m" features** are selected from the **total of "p" features**.
