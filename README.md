@@ -4,6 +4,27 @@ A **decision tree** is a decision support tool that uses a tree-like model of de
 
       ROOT ----> MULTIPLE INTERNAL NODES -----> CORRESPONDING LEAF OR INTERNAL NODES
       
+With more than one attribute taking part in the decision-making process, it is necessary to decide the relevance and importance of each of the attributes, thus placing the most relevant at the root node and further traversing down by splitting the nodes. As we move further down the tree, the level of impurity or uncertainty decreases, thus leading to a better classification or best split at every node. To decide the same, splitting measures such as Information Gain, Gini Index, etc. are used.      
+      
+# GINI Impurity
+
+Gini index or Gini impurity measures the degree or probability of a particular variable being wrongly classified when it is randomly chosen. The degree of Gini index varies between 0 and 1, where 0 denotes that all elements belong to a certain class or if there exists only one class, and 1 denotes that the elements are randomly distributed across various classes. A Gini Index of 0.5 denotes equally distributed elements into some classes.
+
+      GINI Impurity = 1 -  (probability of "YES")² -  (probability of "NO")²
+      
+| Past Trend | Open Interest | Trading Volume | Return |
+|------| -------------|---------------|--------------|
+|positive|low|high|up|
+|negative|high|low|down|      
+|positive|low|high|up| 
+|positive|high|high|up| 
+|negative|low|high|down| 
+|positive|low|low|down| 
+|negative|high|high|down| 
+|negative|low|high|down| 
+|positive|low|low|down| 
+|positive|high|high|up| 
+ 
 The drawback of decision trees is that they dont tend to have the best prediction accuracy due to **high variance**.
 **Bagging** is a general-purpose procedure for reducing the variance of a statistical learning method.
 
