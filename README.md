@@ -50,7 +50,7 @@ In order to properly evaluate different trees, we use a **complexity penalty αT
 
 # Classification Trees
 
-
+If one had to choose a classification technique that performs well across a wide range of situations without requiring much effort from the application developer while being readily understandable by the end-user a strong contender would be the **classification tree** methodology. Instead of using mean like that in Regression Trees, classification trees use the mode of the data.
 
 # GINI Impurity
 
@@ -94,7 +94,7 @@ Gini index or Gini impurity measures the degree or probability of a particular v
 From the above table, we observe that ‘Past Trend’ has the lowest Gini Index and hence it will be chosen as the root node for how decision tree works.
 We will repeat the same procedure to determine the sub-nodes or branches of the decision tree.
 
-
+# Bagging
 
 
 
