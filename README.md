@@ -15,7 +15,7 @@ One of the most common problems of a decision tree is **over-fitting**. This can
       1. Minimum number of oberservations at an internal node.
       2. Maximum number of observations at an internal node.
       3. maximum depth of the tree.
-
+      
 # Regression Trees
 
 All regression techniques contain a single output (response) variable and one or more input (predictor) variables. The output variable is numerical. The general regression tree building methodology allows input variables to be a mixture of continuous and categorical variables. A decision tree is generated when each decision node in the tree contains a test on some input variable's value. The terminal nodes of the tree contain the predicted output variable values.
@@ -30,6 +30,23 @@ A Regression tree may be considered as a variant of decision trees, designed to 
                   The goal is to find regions such that RSS = sum(actual - predicted)² is minimum.
 
 Suppose that in Step 1, we obtain two regions and that the response mean of the training observations in the first region is 10, while the response mean in the second region is 20. Then for a **given observation X = x**, we will predict a value of 10, and if x ∈ R2, we will predict a value of 20. The split of an attribute depends on the RSS value of all the combinations possible and choosing the minimum one. This is a **top-down greedy approach** as the best split at the current step is considered without taking into account the splits that lie ahead.
+
+# Pruning of Regression Trees
+
+Pruning reduces the size of decision trees by removing parts of the tree that do not provide power to classify instances. Decision trees are the most susceptible out of all the machine learning algorithms to overfitting and effective pruning can reduce this likelihood. 
+
+We build a large tree and then cut parts of cut that are not benefitial to us. We can use cross validation but it leads to computational complexity. As a result, we use **Cost Complexity pruning**. 
+
+One way to prevent over-fitting a regression tree to the training data is to remove some of the leaves and replace the split with leaf that is the average of a large number of observations.If we want to prune the tree more, we could remove last two leaves and replace the split with a leaf that is the average of a large number of observations. And again we could remove last two leaves and replace the split with a leaf that is the average of all of the observations.
+
+The first step in cost complexity pruning is to calculate the sum of **squared residual (SSR)** for each tree. We will start with the original full size tree.
+The value of SSR wwill always decrease as we keep reducing it's size. 
+
+In order to properly evaluate different trees, we use a **complexity penalty αT**
+            
+            where, α is the tuning parameter
+                   T is the number of leaf nodes.
+
 
 # Classification Trees
 
