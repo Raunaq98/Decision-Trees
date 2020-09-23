@@ -8,6 +8,21 @@ With more than one attribute taking part in the decision-making process, it is n
       
 The decision tree can be a **regression tree** or a **classification tree**.
 
+# Regression Trees
+
+All regression techniques contain a single output (response) variable and one or more input (predictor) variables. The output variable is numerical. The general regression tree building methodology allows input variables to be a mixture of continuous and categorical variables. A decision tree is generated when each decision node in the tree contains a test on some input variable's value. The terminal nodes of the tree contain the predicted output variable values.
+
+A Regression tree may be considered as a variant of decision trees, designed to approximate real-valued functions, instead of being used for classification methods.
+
+      STEP 1 : We divide the predictor space—that is, the set of possible values for
+                  X1,...,Xp—into J distinct and non-overlapping regions, R1,...,RJ.
+      STEP 2 : For every observation that falls into the region Rj , we make the same 
+                  prediction, which is simply the mean of the response values for the training observations in Rj .
+                  
+                  The goal is to find regions such that RSS = sum(actual - predicted)² is minimum.
+
+Suppose that in Step 1, we obtain two regions and that the response mean of the training observations in the first region is 10, while the response mean in the second region is 20. Then for a **given observation X = x**, we will predict a value of 10, and if x ∈ R2, we will predict a value of 20.
+
 # GINI Impurity
 
 Gini index or Gini impurity measures the degree or probability of a particular variable being wrongly classified when it is randomly chosen. The degree of Gini index varies between 0 and 1, where 0 denotes that all elements belong to a certain class or if there exists only one class, and 1 denotes that the elements are randomly distributed across various classes. A Gini Index of 0.5 denotes equally distributed elements into some classes.
@@ -49,6 +64,9 @@ Gini index or Gini impurity measures the degree or probability of a particular v
 
 From the above table, we observe that ‘Past Trend’ has the lowest Gini Index and hence it will be chosen as the root node for how decision tree works.
 We will repeat the same procedure to determine the sub-nodes or branches of the decision tree.
+
+
+
 
 
 The drawback of decision trees is that they dont tend to have the best prediction accuracy due to **high variance**.
