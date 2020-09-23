@@ -108,10 +108,12 @@ Building upon bagging , we use **random forests**. These are an ensemble of deci
 Each time a tree is being sampled, a **random "m" features** are selected from the **total of "p" features**.
 A fresh sample of m predictors is taken at each split and the split is allowed to use only one of those m predictors. 
            
-           m  =  sqrt( p )
+           m  =  p / 3        for regression
+           m  =  sqrt( p )    for classification
             
 We use random forests because the presence of a strong feature can lead to correlated results in a bagged environment.
 Random forests provide an improvement over bagged trees by way of a small tweak that **decorrelates the trees** and 
 hence independent of each other.
 
-The **complexity parameter (cp)** is used to control the size of the decision tree and to select the optimal tree size. If the cost of adding another variable to the decision tree from the current node is above the value of cp, then tree building does not continue. We could also say that tree construction does not continue unless it would decrease the overall lack of fit by a factor of cp.
+Random forest adds additional randomness to the model, while growing the trees. Instead of searching for the most important feature while splitting a node, it searches for the best feature among a random subset of features. This results in a wide diversity that generally results in a better model.
+
