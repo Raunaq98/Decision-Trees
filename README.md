@@ -117,3 +117,10 @@ hence independent of each other.
 
 Random forest adds additional randomness to the model, while growing the trees. Instead of searching for the most important feature while splitting a node, it searches for the best feature among a random subset of features. This results in a wide diversity that generally results in a better model.
 
+# Gradient Boosting
+
+Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.
+
+      - Random Forests builds each tree independently while Gradient Boosting builds one tree at a time.
+      - Random Forests combine results at the end of the process (by averaging or "majority rules") 
+            while Gradient Boosting combines results along the way.
