@@ -117,6 +117,10 @@ hence independent of each other.
 
 Random forest adds additional randomness to the model, while growing the trees. Instead of searching for the most important feature while splitting a node, it searches for the best feature among a random subset of features. This results in a wide diversity that generally results in a better model.
 
+# Boosting
+
+ Boosting is a method of converting weak learners into strong learners. In boosting, each new tree is a fit on a modified version of the original data set. 
+
 # Gradient Boosting
 
 Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.
@@ -124,3 +128,13 @@ Gradient boosting is a machine learning technique for regression and classificat
       - Random Forests builds each tree independently while Gradient Boosting builds one tree at a time.
       - Random Forests combine results at the end of the process (by averaging or "majority rules") 
             while Gradient Boosting combines results along the way.
+
+We start with a single treee that has all the observations. We find the residuals and use these to to form a smaller tree using a **shrinkage parameter (lambda)**. This continues till we reach the maximum number of trees. If the number of trees is too large, it can lead to **overfitting.**
+
+# Adaptive Bossting (AdaBossting)
+
+We start by creating a full tree and make predictions using it. Wherever the tree missclassifies ( classification tree ) or wherever the residual is high ( regression tree ), we increase the importance of that importance. The tree then tries to rightly capture them in the next tree. We continue to build the model until a fixed number of itterations.
+
+# XG Boosting
+
+It is similar to gradient boosting. It uses regularisation techniques such are Ridge and LASSO to control over-fitting.
