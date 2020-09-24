@@ -6,6 +6,53 @@ A **decision tree** is a decision support tool that uses a tree-like model of de
       
 With more than one attribute taking part in the decision-making process, it is necessary to decide the relevance and importance of each of the attributes, thus placing the most relevant at the root node and further traversing down by splitting the nodes. As we move further down the tree, the level of impurity or uncertainty decreases, thus leading to a better classification or best split at every node. To decide the same, splitting measures such as Information Gain, Gini Index, etc. are used.      
       
+The decision tree can be a **regression tree** or a **classification tree**.
+
+# Stopping Criteria
+
+One of the most common problems of a decision tree is **over-fitting**. This can be avoided if we do not let the tree grow over a certain point. Three methods of stopping tree growth are:
+
+      1. Minimum number of oberservations at an internal node.
+      2. Maximum number of observations at an internal node.
+      3. maximum depth of the tree.
+      
+# Regression Trees
+
+All regression techniques contain a single output (response) variable and one or more input (predictor) variables. The output variable is numerical. The general regression tree building methodology allows input variables to be a mixture of continuous and categorical variables. A decision tree is generated when each decision node in the tree contains a test on some input variable's value. The terminal nodes of the tree contain the predicted output variable values.
+
+A Regression tree may be considered as a variant of decision trees, designed to approximate real-valued functions, instead of being used for classification methods.
+
+      STEP 1 : We divide the predictor space—that is, the set of possible values for
+                  X1,...,Xp—into J distinct and non-overlapping regions, R1,...,RJ.
+      STEP 2 : For every observation that falls into the region Rj , we make the same 
+                  prediction, which is simply the mean of the response values for the training observations in Rj .
+                  
+                  The goal is to find regions such that RSS = sum(actual - predicted)² is minimum.
+
+Suppose that in Step 1, we obtain two regions and that the response mean of the training observations in the first region is 10, while the response mean in the second region is 20. Then for a **given observation X = x**, we will predict a value of 10, and if x ∈ R2, we will predict a value of 20. The split of an attribute depends on the RSS value of all the combinations possible and choosing the minimum one. This is a **top-down greedy approach** as the best split at the current step is considered without taking into account the splits that lie ahead.
+
+# Pruning of Regression Trees
+
+Pruning reduces the size of decision trees by removing parts of the tree that do not provide power to classify instances. Decision trees are the most susceptible out of all the machine learning algorithms to overfitting and effective pruning can reduce this likelihood. 
+
+We build a large tree and then cut parts of cut that are not benefitial to us. We can use cross validation but it leads to computational complexity. As a result, we use **Cost Complexity pruning**. 
+
+One way to prevent over-fitting a regression tree to the training data is to remove some of the leaves and replace the split with leaf that is the average of a large number of observations.If we want to prune the tree more, we could remove last two leaves and replace the split with a leaf that is the average of a large number of observations. And again we could remove last two leaves and replace the split with a leaf that is the average of all of the observations.
+
+The first step in cost complexity pruning is to calculate the sum of **squared residual (SSR)** for each tree. We will start with the original full size tree.
+The value of SSR wwill always decrease as we keep reducing it's size. 
+
+In order to properly evaluate different trees, we use a **complexity penalty Cp.T**
+            
+            where, Cp is the tuning parameter
+                   T is the number of leaf nodes.
+                                    
+The **complexity parameter (cp)** is used to control the size of the decision tree and to select the optimal tree size. If the cost of adding another variable to the decision tree from the current node is above the value of cp, then tree building does not continue. We could also say that tree construction does not continue unless it would decrease the overall lack of fit by a factor of cp.
+
+# Classification Trees
+
+If one had to choose a classification technique that performs well across a wide range of situations without requiring much effort from the application developer while being readily understandable by the end-user a strong contender would be the **classification tree** methodology. Instead of using mean like that in Regression Trees, classification trees use the mode of the data.
+
 # GINI Impurity
 
 Gini index or Gini impurity measures the degree or probability of a particular variable being wrongly classified when it is randomly chosen. The degree of Gini index varies between 0 and 1, where 0 denotes that all elements belong to a certain class or if there exists only one class, and 1 denotes that the elements are randomly distributed across various classes. A Gini Index of 0.5 denotes equally distributed elements into some classes.
@@ -48,19 +95,46 @@ Gini index or Gini impurity measures the degree or probability of a particular v
 From the above table, we observe that ‘Past Trend’ has the lowest Gini Index and hence it will be chosen as the root node for how decision tree works.
 We will repeat the same procedure to determine the sub-nodes or branches of the decision tree.
 
+# Bagging
 
 The drawback of decision trees is that they dont tend to have the best prediction accuracy due to **high variance**.
 **Bagging** is a general-purpose procedure for reducing the variance of a statistical learning method.
 
+Here idea is to create several subsets of data from training sample chosen randomly with replacement. Now, each collection of subset data is used to train their decision trees. As a result, we end up with an ensemble of different models. Average of all the predictions from different trees are used which is more robust than a single decision tree.
+
+# Random Forests
 
 Building upon bagging , we use **random forests**. These are an ensemble of decision trees sampled from the training set with replacement.
 Each time a tree is being sampled, a **random "m" features** are selected from the **total of "p" features**.
 A fresh sample of m predictors is taken at each split and the split is allowed to use only one of those m predictors. 
            
-           m  =  sqrt( p )
+           m  =  p / 3        for regression
+           m  =  sqrt( p )    for classification
             
 We use random forests because the presence of a strong feature can lead to correlated results in a bagged environment.
 Random forests provide an improvement over bagged trees by way of a small tweak that **decorrelates the trees** and 
 hence independent of each other.
 
-The **complexity parameter (cp)** is used to control the size of the decision tree and to select the optimal tree size. If the cost of adding another variable to the decision tree from the current node is above the value of cp, then tree building does not continue. We could also say that tree construction does not continue unless it would decrease the overall lack of fit by a factor of cp.
+Random forest adds additional randomness to the model, while growing the trees. Instead of searching for the most important feature while splitting a node, it searches for the best feature among a random subset of features. This results in a wide diversity that generally results in a better model.
+
+# Boosting
+
+ Boosting is a method of converting weak learners into strong learners. In boosting, each new tree is a fit on a modified version of the original data set. 
+
+# Gradient Boosting
+
+Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.
+
+      - Random Forests builds each tree independently while Gradient Boosting builds one tree at a time.
+      - Random Forests combine results at the end of the process (by averaging or "majority rules") 
+            while Gradient Boosting combines results along the way.
+
+We start with a single treee that has all the observations. We find the residuals and use these to to form a smaller tree using a **shrinkage parameter (lambda)**. This continues till we reach the maximum number of trees. If the number of trees is too large, it can lead to **overfitting.**
+
+# Adaptive Bossting (AdaBossting)
+
+We start by creating a full tree and make predictions using it. Wherever the tree missclassifies ( classification tree ) or wherever the residual is high ( regression tree ), we increase the importance of that importance. The tree then tries to rightly capture them in the next tree. We continue to build the model until a fixed number of itterations.
+
+# XG Boosting
+
+It is similar to gradient boosting. It uses regularisation techniques such are Ridge and LASSO to control over-fitting.
